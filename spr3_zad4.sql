@@ -25,11 +25,11 @@ CREATE TABLE Dim_Product (
 CREATE TABLE Fact_Orders (
 	ProductID INT NOT NULL, 
 	CustomerID INT NOT NULL, 
-	OrderDate , 
-	ShipDate, 
-	OrderQty, 
-	UnitPrice, 
-	UnitPriceDiscount, 
-	LineTotal
+	OrderDate DATETIME NOT NULL,
+	ShipDate DATETIME NOT NULL,
+	OrderQty SMALLINT NOT NULL,
+	UnitPrice MONEY NOT NULL,
+	UnitPriceDiscount MONEY NOT NULL,
+	LineTotal NUMERIC(38, 6) NOT NULL -- COMPUTED ?
 );
 
