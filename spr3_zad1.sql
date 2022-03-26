@@ -11,7 +11,7 @@ SELECT
 	names.Pracownik,
 	[SalesPersonID] AS [pracID],
 	YEAR([OrderDate]) AS [Rok zamównienia], 
-	SUM([SubTotal]) AS [Kwota],
+	ROUND(SUM([SubTotal]), 2) AS [Kwota],
 	COUNT([SalesOrderID]) AS [Liczba zamówieñ]
 FROM 
 	[Sales].[SalesOrderHeader] sh

@@ -11,7 +11,7 @@ SELECT DISTINCT
 	names.Pracownik,
 	[SalesPersonID] AS [pracID],
 	YEAR([OrderDate]) AS [Rok zamównienia], 
-	SUM([SubTotal]) OVER(PARTITION BY [SalesPersonID], YEAR([OrderDate])) AS [Kwota],
+	ROUND(SUM([SubTotal]) OVER(PARTITION BY [SalesPersonID], YEAR([OrderDate])), 2) AS [Kwota],
 	COUNT([SalesOrderID]) OVER(PARTITION BY [SalesPersonID], YEAR([OrderDate])) AS [Liczba zamówieñ]
 FROM 
 	[Sales].[SalesOrderHeader] sh
