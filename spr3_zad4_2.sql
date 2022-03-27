@@ -8,12 +8,12 @@ SELECT
 	[CountryRegionCode], 
 	[Group] 
 FROM 
-	[AdventureWorks2019].[Sales].[SalesTerritory] st
-FULL OUTER JOIN [AdventureWorks2019].[Sales].[Customer] c
-ON st.TerritoryID = c.TerritoryID
-FULL OUTER JOIN [AdventureWorks2019].[Person].[Person] p
-ON c.PersonID = p.BusinessEntityID
-WHERE c.CustomerID IS NOT NULL
+	[AdventureWorks2019].[Sales].[Customer] c
+LEFT JOIN
+[AdventureWorks2019].[Sales].[SalesTerritory] st
+	ON st.TerritoryID = c.TerritoryID
+LEFT JOIN [AdventureWorks2019].[Person].[Person] p
+	ON c.PersonID = p.BusinessEntityID
 ORDER BY [CustomerId]
 ;
 
@@ -21,20 +21,20 @@ ORDER BY [CustomerId]
 INSERT INTO
 	[254534].dbo.Dim_Product
 SELECT 
-	[ProductID], 
+	p.[ProductID], 
 	p.[Name], 
-	[ListPrice], 
-	[Color], 
+	p.[ListPrice], 
+	p.[Color], 
 	ps.Name AS [SubCategoryName], 
 	pc.Name AS [CategoryName]
 FROM 
 	[AdventureWorks2019].[Production].[Product] p
-FULL OUTER JOIN
+LEFT JOIN
 	[AdventureWorks2019].[Production].[ProductSubcategory] ps
-ON p.ProductSubcategoryID = ps.ProductSubcategoryID
-FULL OUTER JOIN
+	ON p.ProductSubcategoryID = ps.ProductSubcategoryID
+LEFT JOIN
 	[AdventureWorks2019].[Production].[ProductCategory] pc
-ON ps.ProductSubcategoryID = pc.ProductCategoryID
+	ON ps.ProductCategoryID = pc.ProductCategoryID
 ORDER BY [ProductID]
 ;
 
@@ -51,8 +51,8 @@ SELECT
 	[UnitPriceDiscount], 
 	[LineTotal]
 FROM 
-	[AdventureWorks2019].[Sales].[SalesOrderDetail] d
-INNER JOIN [AdventureWorks2019].[Sales].[SalesOrderHeader] h
+	[AdventureWorks2019].[Sales].[SalesOrderHeader] h
+LEFT JOIN [AdventureWorks2019].[Sales].[SalesOrderDetail] d
 ON d.SalesOrderID = h.SalesOrderID
 ORDER BY [ProductID], [CustomerID]
 ;
