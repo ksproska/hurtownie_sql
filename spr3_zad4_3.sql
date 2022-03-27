@@ -1,4 +1,4 @@
-SELECT 
+SELECT DISTINCT
 	CONCAT([LastName], ', ', [FirstName]) AS [Nazwisko, imiê],
 	p.[CategoryName] AS [Kategoria produktu],
 	p.[Name] AS [Nazwa produktu],
